@@ -15,21 +15,21 @@ val tv = HomekitAccessory(
         TelevisionService(
             active = ActiveCharacteristic(Flux.just(ActiveCharacteristic.Enum.ACTIVE)) { println("Active = $it")},
             activeIdentifier = ActiveIdentifierCharacteristic(Flux.just(1)) { println("Active input = $it") },
-            configuredName = ConfiguredNameCharacteristic(Flux.just("My TV")) {},
-            sleepDiscoveryMode = SleepDiscoveryModeCharacteristic(Flux.just(SleepDiscoveryModeCharacteristic.Enum.ALWAYS_DISCOVERABLE)),
+            configuredName = ConfiguredNameCharacteristic("My TV"),
+            sleepDiscoveryMode = SleepDiscoveryModeCharacteristic(SleepDiscoveryModeCharacteristic.Enum.ALWAYS_DISCOVERABLE),
             linkedServices = listOf(
                 InputSourceService(
-                    configuredName = ConfiguredNameCharacteristic(Flux.just("Hdmi 1")) {},
-                    inputSourceType = InputSourceTypeCharacteristic(Flux.just(InputSourceTypeCharacteristic.Enum.HDMI)),
-                    isConfigured = IsConfiguredCharacteristic(Flux.just(IsConfiguredCharacteristic.Enum.CONFIGURED)) {},
-                    currentVisibilityState = CurrentVisibilityStateCharacteristic(Flux.just(CurrentVisibilityStateCharacteristic.Enum.SHOWN)),
+                    configuredName = ConfiguredNameCharacteristic("Hdmi 1"),
+                    inputSourceType = InputSourceTypeCharacteristic(InputSourceTypeCharacteristic.Enum.HDMI),
+                    isConfigured = IsConfiguredCharacteristic(IsConfiguredCharacteristic.Enum.CONFIGURED),
+                    currentVisibilityState = CurrentVisibilityStateCharacteristic(CurrentVisibilityStateCharacteristic.Enum.SHOWN),
                     identifier = IdentifierCharacteristic(1)
                 ),
                 InputSourceService(
-                    configuredName = ConfiguredNameCharacteristic(Flux.just("Netflix")) {},
-                    inputSourceType = InputSourceTypeCharacteristic(Flux.just(InputSourceTypeCharacteristic.Enum.APPLICATION)),
-                    isConfigured = IsConfiguredCharacteristic(Flux.just(IsConfiguredCharacteristic.Enum.CONFIGURED)) {},
-                    currentVisibilityState = CurrentVisibilityStateCharacteristic(Flux.just(CurrentVisibilityStateCharacteristic.Enum.SHOWN)),
+                    configuredName = ConfiguredNameCharacteristic("Netflix"),
+                    inputSourceType = InputSourceTypeCharacteristic(InputSourceTypeCharacteristic.Enum.APPLICATION),
+                    isConfigured = IsConfiguredCharacteristic(IsConfiguredCharacteristic.Enum.CONFIGURED),
+                    currentVisibilityState = CurrentVisibilityStateCharacteristic(CurrentVisibilityStateCharacteristic.Enum.SHOWN),
                     identifier = IdentifierCharacteristic(2)
                 )
             )
@@ -38,7 +38,7 @@ val tv = HomekitAccessory(
             active = ActiveCharacteristic(Flux.just(ActiveCharacteristic.Enum.ACTIVE)) {},
             mute = MuteCharacteristic(Flux.just(false)) { println("Mute = $it") },
             volume = VolumeCharacteristic(Flux.just(50)) { println("Volume = $it") },
-            volumeControlType = VolumeControlTypeCharacteristic(Flux.just(VolumeControlTypeCharacteristic.Enum.ABSOLUTE))
+            volumeControlType = VolumeControlTypeCharacteristic(VolumeControlTypeCharacteristic.Enum.ABSOLUTE)
         )
     )
 )
