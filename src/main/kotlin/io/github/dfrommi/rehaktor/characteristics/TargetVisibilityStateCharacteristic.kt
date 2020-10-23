@@ -1,23 +1,31 @@
 // Auto-generated. Don't modify directly
 package io.github.dfrommi.rehaktor.characteristics
 
-import io.github.dfrommi.rehaktor.core.*
+import io.github.dfrommi.rehaktor.core.EnumReactiveCharacteristic
 import reactor.core.publisher.Flux
+import kotlin.Any
+import kotlin.Boolean
 
-class TargetVisibilityStateCharacteristic(values: Flux<TargetVisibilityStateCharacteristic.Enum>, setter: (TargetVisibilityStateCharacteristic.Enum) -> Any?) : EnumReactiveCharacteristic<TargetVisibilityStateCharacteristic.Enum>(
-  type = "00000134-0000-1000-8000-0026BB765291",
-  description = "Target Visibility State",
-  enumClass = Enum::class,
-  values = values,
-  setter = setter,
-  isObservable = true
-) {
-  enum class Enum {
+public open class TargetVisibilityStateCharacteristic(
+  values: Flux<Enum>,
+  setter: (Enum) -> Any?
+) :
+  EnumReactiveCharacteristic<TargetVisibilityStateCharacteristic.Enum>(
+    type = "00000134-0000-1000-8000-0026BB765291",
+    description = "Target Visibility State", enumClass = Enum::class, values = values, setter = setter,
+    isObservable = true
+  ) {
+  public constructor(value: Enum) : this(Flux.just(value), {})
+
+  public enum class Enum {
     SHOWN,
-    HIDDEN;fun toBoolean() = this == HIDDEN
+    HIDDEN,
+    ;
 
-    companion object {
-      fun from(v: Boolean) = if (v) HIDDEN else SHOWN
-    } 
-  } 
+    public fun toBoolean() = this == HIDDEN
+
+    public companion object {
+      public fun from(v: Boolean) = if (v) HIDDEN else SHOWN
+    }
+  }
 }

@@ -1,11 +1,16 @@
 // Auto-generated. Don't modify directly
 package io.github.dfrommi.rehaktor.services
 
-import io.github.dfrommi.rehaktor.characteristics.*
-import io.github.dfrommi.rehaktor.core.*
+import io.github.dfrommi.rehaktor.characteristics.CurrentTemperatureCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.NameCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.StatusActiveCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.StatusFaultCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.StatusLowBatteryCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.StatusTamperedCharacteristic
 import io.github.hapjava.services.Service
+import kotlin.collections.List
 
-class TemperatureSensorService(
+public class TemperatureSensorService(
   currentTemperature: CurrentTemperatureCharacteristic,
   statusActive: StatusActiveCharacteristic? = null,
   statusFault: StatusFaultCharacteristic? = null,
@@ -13,7 +18,7 @@ class TemperatureSensorService(
   statusTampered: StatusTamperedCharacteristic? = null,
   name: NameCharacteristic? = null,
   linkedServices: List<Service> = emptyList()
-) : Service by HomekitService(
+) : Service by io.github.dfrommi.rehaktor.core.HomekitService(
     type = "0000008A-0000-1000-8000-0026BB765291",
     characteristics = listOfNotNull(
       currentTemperature,

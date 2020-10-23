@@ -1,22 +1,28 @@
 // Auto-generated. Don't modify directly
 package io.github.dfrommi.rehaktor.characteristics
 
-import io.github.dfrommi.rehaktor.core.*
+import io.github.dfrommi.rehaktor.core.EnumReactiveCharacteristic
 import reactor.core.publisher.Flux
+import kotlin.Boolean
 
-class SleepDiscoveryModeCharacteristic(values: Flux<SleepDiscoveryModeCharacteristic.Enum>) : EnumReactiveCharacteristic<SleepDiscoveryModeCharacteristic.Enum>(
-  type = "000000E8-0000-1000-8000-0026BB765291",
-  description = "Sleep Discovery Mode",
-  enumClass = Enum::class,
-  values = values,
-  isObservable = true
-) {
-  enum class Enum {
+public open class SleepDiscoveryModeCharacteristic(
+  values: Flux<Enum>
+) :
+  EnumReactiveCharacteristic<SleepDiscoveryModeCharacteristic.Enum>(
+    type = "000000E8-0000-1000-8000-0026BB765291",
+    description = "Sleep Discovery Mode", enumClass = Enum::class, values = values, isObservable = true
+  ) {
+  public constructor(value: Enum) : this(Flux.just(value))
+
+  public enum class Enum {
     NOT_DISCOVERABLE,
-    ALWAYS_DISCOVERABLE;fun toBoolean() = this == ALWAYS_DISCOVERABLE
+    ALWAYS_DISCOVERABLE,
+    ;
 
-    companion object {
-      fun from(v: Boolean) = if (v) ALWAYS_DISCOVERABLE else NOT_DISCOVERABLE
-    } 
-  } 
+    public fun toBoolean() = this == ALWAYS_DISCOVERABLE
+
+    public companion object {
+      public fun from(v: Boolean) = if (v) ALWAYS_DISCOVERABLE else NOT_DISCOVERABLE
+    }
+  }
 }

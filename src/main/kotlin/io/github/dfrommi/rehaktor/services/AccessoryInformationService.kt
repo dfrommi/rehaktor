@@ -1,11 +1,18 @@
 // Auto-generated. Don't modify directly
 package io.github.dfrommi.rehaktor.services
 
-import io.github.dfrommi.rehaktor.characteristics.*
-import io.github.dfrommi.rehaktor.core.*
+import io.github.dfrommi.rehaktor.characteristics.AccessoryFlagsCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.FirmwareRevisionCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.HardwareRevisionCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.IdentifyCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.ManufacturerCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.ModelCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.NameCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.SerialNumberCharacteristic
 import io.github.hapjava.services.Service
+import kotlin.collections.List
 
-class AccessoryInformationService(
+public class AccessoryInformationService(
   identify: IdentifyCharacteristic,
   manufacturer: ManufacturerCharacteristic,
   model: ModelCharacteristic,
@@ -15,7 +22,7 @@ class AccessoryInformationService(
   hardwareRevision: HardwareRevisionCharacteristic? = null,
   accessoryFlags: AccessoryFlagsCharacteristic? = null,
   linkedServices: List<Service> = emptyList()
-) : Service by HomekitService(
+) : Service by io.github.dfrommi.rehaktor.core.HomekitService(
     type = "0000003E-0000-1000-8000-0026BB765291",
     characteristics = listOfNotNull(
       identify,
