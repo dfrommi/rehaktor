@@ -1,18 +1,22 @@
 // Auto-generated. Don't modify directly
 package io.github.dfrommi.rehaktor.characteristics
 
-import io.github.dfrommi.rehaktor.core.*
+import io.github.dfrommi.rehaktor.core.EnumReactiveCharacteristic
 import reactor.core.publisher.Flux
+import kotlin.Any
 
-class PictureModeCharacteristic(values: Flux<PictureModeCharacteristic.Enum>, setter: (PictureModeCharacteristic.Enum) -> Any?) : EnumReactiveCharacteristic<PictureModeCharacteristic.Enum>(
-  type = "000000E2-0000-1000-8000-0026BB765291",
-  description = "Picture Mode",
-  enumClass = Enum::class,
-  values = values,
-  setter = setter,
-  isObservable = true
-) {
-  enum class Enum {
+public open class PictureModeCharacteristic(
+  values: Flux<Enum>,
+  setter: (Enum) -> Any?
+) :
+  EnumReactiveCharacteristic<PictureModeCharacteristic.Enum>(
+    type = "000000E2-0000-1000-8000-0026BB765291",
+    description = "Picture Mode", enumClass = Enum::class, values = values, setter = setter,
+    isObservable = true
+  ) {
+  public constructor(value: Enum) : this(Flux.just(value), {})
+
+  public enum class Enum {
     OTHER,
     STANDARD,
     CALIBRATED,
@@ -26,6 +30,6 @@ class PictureModeCharacteristic(values: Flux<PictureModeCharacteristic.Enum>, se
     UNKNOWN_3,
     UNKNOWN_4,
     UNKNOWN_5,
-    UNKNOWN_6;
-  } 
+    UNKNOWN_6,
+  }
 }

@@ -1,12 +1,14 @@
 package io.github.dfrommi.rehaktor.generator.template
 
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.TypeSpec
 import java.io.File
 
 fun reformatCode(file: File) {
-    com.pinterest.ktlint.main(arrayOf(
-        "--disabled_rules", "no-wildcard-imports",
-        "-F", file.absolutePath)
-    )
+    com.pinterest.ktlint.main(arrayOf("-F", file.absolutePath))
 }
 
-fun fileFromPackage(packageName: String, baseDir: File) = File(baseDir, packageName.replace(".", "/"))
+data class ClassSpec(
+    val name: ClassName,
+    val type: TypeSpec
+)

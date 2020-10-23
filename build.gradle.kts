@@ -49,6 +49,7 @@ dependencies {
 
 project(":generator") {
     dependencies {
+        implementation("com.squareup:kotlinpoet:1.7.2")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.+")
         implementation("com.pinterest:ktlint:0.39.0")
     }

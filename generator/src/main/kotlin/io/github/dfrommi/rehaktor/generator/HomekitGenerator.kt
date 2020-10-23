@@ -1,9 +1,10 @@
 package io.github.dfrommi.rehaktor.generator
 
+import com.squareup.kotlinpoet.FileSpec
 import io.github.dfrommi.rehaktor.generator.metadata.HomekitMetadata
-import io.github.dfrommi.rehaktor.generator.model.GenerationModel
-import io.github.dfrommi.rehaktor.generator.template.CharacteristicsTemplate
-import io.github.dfrommi.rehaktor.generator.template.ServicesTemplate
+import io.github.dfrommi.rehaktor.generator.template.CharacteristicClassBuilder
+import io.github.dfrommi.rehaktor.generator.template.ServiceClassBuilder
+import io.github.dfrommi.rehaktor.generator.template.reformatCode
 import java.io.File
 
 /*
@@ -28,8 +29,27 @@ fun main(args: Array<String>) {
 
     val metadata = HomekitMetadata.fromResources("/default.metadata.json", "/tv.metadata.json")
 
-    val generationModel = GenerationModel(metadata)
+    val characteristicByUuid = metadata.characteristics.map {
+        it.uuid to CharacteristicClassBuilder("io.github.dfrommi.rehaktor.characteristics", it).build()
+    }.toMap()
 
-    CharacteristicsTemplate().generate(generationModel, "io.github.dfrommi.rehaktor.characteristics", baseDir)
-    ServicesTemplate().generate(generationModel, "io.github.dfrommi.rehaktor.services", baseDir)
+    val services = metadata.services.map {
+        ServiceClassBuilder("io.github.dfrommi.rehaktor.services", it, characteristicByUuid).build()
+    }
+
+    (services + characteristicByUuid.values).forEach {
+        FileSpec.builder(it.name.packageName, it.name.simpleName)
+            .addComment("Auto-generated. Don't modify directly")
+            .addType(it.type)
+            .build()
+            .writeTo(baseDir)
+    }
+
+    File(baseDir, "io/github/dfrommi/rehaktor/characteristics").listFiles()?.forEach {
+        reformatCode(it)
+    }
+
+    File(baseDir, "io/github/dfrommi/rehaktor/services").listFiles()?.forEach {
+        reformatCode(it)
+    }
 }

@@ -1,17 +1,19 @@
 // Auto-generated. Don't modify directly
 package io.github.dfrommi.rehaktor.characteristics
 
-import io.github.dfrommi.rehaktor.core.*
+import io.github.dfrommi.rehaktor.core.EnumReactiveCharacteristic
 import reactor.core.publisher.Flux
 
-class InputSourceTypeCharacteristic(values: Flux<InputSourceTypeCharacteristic.Enum>) : EnumReactiveCharacteristic<InputSourceTypeCharacteristic.Enum>(
-  type = "000000DB-0000-1000-8000-0026BB765291",
-  description = "Input Source Type",
-  enumClass = Enum::class,
-  values = values,
-  isObservable = true
-) {
-  enum class Enum {
+public open class InputSourceTypeCharacteristic(
+  values: Flux<Enum>
+) :
+  EnumReactiveCharacteristic<InputSourceTypeCharacteristic.Enum>(
+    type = "000000DB-0000-1000-8000-0026BB765291",
+    description = "Input Source Type", enumClass = Enum::class, values = values, isObservable = true
+  ) {
+  public constructor(value: Enum) : this(Flux.just(value))
+
+  public enum class Enum {
     OTHER,
     HOME_SCREEN,
     TUNER,
@@ -22,6 +24,6 @@ class InputSourceTypeCharacteristic(values: Flux<InputSourceTypeCharacteristic.E
     DVI,
     AIRPLAY,
     USB,
-    APPLICATION;
-  } 
+    APPLICATION,
+  }
 }

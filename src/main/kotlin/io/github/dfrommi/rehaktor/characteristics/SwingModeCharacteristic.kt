@@ -1,23 +1,31 @@
 // Auto-generated. Don't modify directly
 package io.github.dfrommi.rehaktor.characteristics
 
-import io.github.dfrommi.rehaktor.core.*
+import io.github.dfrommi.rehaktor.core.EnumReactiveCharacteristic
 import reactor.core.publisher.Flux
+import kotlin.Any
+import kotlin.Boolean
 
-class SwingModeCharacteristic(values: Flux<SwingModeCharacteristic.Enum>, setter: (SwingModeCharacteristic.Enum) -> Any?) : EnumReactiveCharacteristic<SwingModeCharacteristic.Enum>(
-  type = "000000B6-0000-1000-8000-0026BB765291",
-  description = "Swing Mode",
-  enumClass = Enum::class,
-  values = values,
-  setter = setter,
-  isObservable = true
-) {
-  enum class Enum {
+public open class SwingModeCharacteristic(
+  values: Flux<Enum>,
+  setter: (Enum) -> Any?
+) :
+  EnumReactiveCharacteristic<SwingModeCharacteristic.Enum>(
+    type = "000000B6-0000-1000-8000-0026BB765291",
+    description = "Swing Mode", enumClass = Enum::class, values = values, setter = setter,
+    isObservable = true
+  ) {
+  public constructor(value: Enum) : this(Flux.just(value), {})
+
+  public enum class Enum {
     SWING_DISABLED,
-    SWING_ENABLED;fun toBoolean() = this == SWING_ENABLED
+    SWING_ENABLED,
+    ;
 
-    companion object {
-      fun from(v: Boolean) = if (v) SWING_ENABLED else SWING_DISABLED
-    } 
-  } 
+    public fun toBoolean() = this == SWING_ENABLED
+
+    public companion object {
+      public fun from(v: Boolean) = if (v) SWING_ENABLED else SWING_DISABLED
+    }
+  }
 }

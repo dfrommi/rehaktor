@@ -92,5 +92,5 @@ data class Service(
     val requiredCharacteristicsUUIDs: List<String>,
 
     @JsonProperty("OptionalCharacteristics")
-    val optionalCharacteristicsUUIDs: List<String>?
+    val optionalCharacteristicsUUIDs: List<String> = emptyList()
 )

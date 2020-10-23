@@ -1,11 +1,16 @@
 // Auto-generated. Don't modify directly
 package io.github.dfrommi.rehaktor.services
 
-import io.github.dfrommi.rehaktor.characteristics.*
-import io.github.dfrommi.rehaktor.core.*
+import io.github.dfrommi.rehaktor.characteristics.ActiveCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.InUseCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.NameCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.ProgramModeCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.RemainingDurationCharacteristic
+import io.github.dfrommi.rehaktor.characteristics.StatusFaultCharacteristic
 import io.github.hapjava.services.Service
+import kotlin.collections.List
 
-class IrrigationSystemService(
+public class IrrigationSystemService(
   active: ActiveCharacteristic,
   programMode: ProgramModeCharacteristic,
   inUse: InUseCharacteristic,
@@ -13,7 +18,7 @@ class IrrigationSystemService(
   remainingDuration: RemainingDurationCharacteristic? = null,
   statusFault: StatusFaultCharacteristic? = null,
   linkedServices: List<Service> = emptyList()
-) : Service by HomekitService(
+) : Service by io.github.dfrommi.rehaktor.core.HomekitService(
     type = "000000CF-0000-1000-8000-0026BB765291",
     characteristics = listOfNotNull(
       active,
