@@ -8,7 +8,12 @@ data class HomekitService(
     private val characteristics: List<Characteristic>,
     private val linkedServices: List<Service> = emptyList()
 ) : Service {
+    private val aggregatedLinkedServices = linkedServices.toMutableList()
+
     override fun getType() = type
     override fun getCharacteristics() = characteristics
-    override fun getLinkedServices() = linkedServices
+    override fun getLinkedServices() = aggregatedLinkedServices
+    override fun addLinkedService(service: Service) {
+        aggregatedLinkedServices.add(service)
+    }
 }
