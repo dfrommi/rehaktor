@@ -17,6 +17,8 @@ class HomekitAuthService(
     override fun getSalt() = authState.salt
     override fun getUserPublicKey(username: String) = authState.userKeyMap[username]
 
+    override fun hasUser() = !authState.userKeyMap.isEmpty()
+
     override fun createUser(username: String, publicKey: ByteArray) {
         authState.userKeyMap[username] = publicKey
         authStateRepository.save(authState)
