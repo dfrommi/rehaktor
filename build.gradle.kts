@@ -42,7 +42,7 @@ allprojects {
 }
 
 dependencies {
-    api("com.github.dfrommi:hap-java:08ce3b2")
+    api("com.github.HAP-Java:hap-java:45d9403")
     api("io.projectreactor:reactor-core:[3.0,)")
     api("com.fasterxml.jackson.module:jackson-module-kotlin:[2.0,)")
 }
