@@ -1,20 +1,20 @@
 #!/usr/bin/env kotlin
 
 @file:Repository("https://jitpack.io")
-@file:DependsOn("com.github.dfrommi:rehaktor:master-SNAPSHOT")
+@file:DependsOn("com.github.dfrommi:hap-kt:master-SNAPSHOT")
 
 import io.github.dfrommi.rehaktor.characteristics.*
 import io.github.dfrommi.rehaktor.core.HomekitAccessory
+import io.github.dfrommi.rehaktor.core.ObservableValue
 import io.github.dfrommi.rehaktor.core.auth.HomekitAuthService
 import io.github.dfrommi.rehaktor.services.*
 import io.github.hapjava.server.impl.HomekitServer
-import reactor.core.publisher.Flux
 
 val tv = HomekitAccessory(
     200, "Television", listOf(
         TelevisionService(
-            active = ActiveCharacteristic(Flux.just(ActiveCharacteristic.Enum.ACTIVE)) { println("Active = $it")},
-            activeIdentifier = ActiveIdentifierCharacteristic(Flux.just(1)) { println("Active input = $it") },
+            active = ActiveCharacteristic(ObservableValue(ActiveCharacteristic.Enum.ACTIVE)) { println("Active = $it") },
+            activeIdentifier = ActiveIdentifierCharacteristic(ObservableValue(1)) { println("Active input = $it") },
             configuredName = ConfiguredNameCharacteristic("My TV"),
             sleepDiscoveryMode = SleepDiscoveryModeCharacteristic(SleepDiscoveryModeCharacteristic.Enum.ALWAYS_DISCOVERABLE),
             linkedServices = listOf(
@@ -35,9 +35,9 @@ val tv = HomekitAccessory(
             )
         ),
         TelevisionSpeakerService(
-            active = ActiveCharacteristic(Flux.just(ActiveCharacteristic.Enum.ACTIVE)) {},
-            mute = MuteCharacteristic(Flux.just(false)) { println("Mute = $it") },
-            volume = VolumeCharacteristic(Flux.just(50)) { println("Volume = $it") },
+            active = ActiveCharacteristic(ObservableValue(ActiveCharacteristic.Enum.ACTIVE)) {},
+            mute = MuteCharacteristic(ObservableValue(false)) { println("Mute = $it") },
+            volume = VolumeCharacteristic(ObservableValue(50)) { println("Volume = $it") },
             volumeControlType = VolumeControlTypeCharacteristic(VolumeControlTypeCharacteristic.Enum.ABSOLUTE)
         )
     )

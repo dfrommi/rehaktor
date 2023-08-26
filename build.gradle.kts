@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.4.10"
+    kotlin("jvm") version "1.8.21"
     `maven-publish`
 }
 
@@ -42,20 +42,18 @@ allprojects {
 }
 
 dependencies {
-    api("com.github.HAP-Java:hap-java:45d9403")
-    api("io.projectreactor:reactor-core:[3.0,)")
-    api("com.fasterxml.jackson.module:jackson-module-kotlin:[2.0,)")
+    api("io.github.hap-java:hap:[2.0.7,3)")
 }
 
 project(":generator") {
     dependencies {
-        implementation("com.squareup:kotlinpoet:1.7.2")
+        implementation("com.squareup:kotlinpoet:1.13.2")
+        implementation("com.pinterest:ktlint:0.49.0")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.+")
-        implementation("com.pinterest:ktlint:0.39.0")
     }
 
     task<JavaExec>("generate") {
-        main = "io.github.dfrommi.rehaktor.generator.HomekitGeneratorKt"
+        mainClass.set("io.github.dfrommi.hapkt.generator.HomekitGeneratorKt")
         args(file("../src/main/kotlin").absolutePath)
         classpath(sourceSets.main.get().runtimeClasspath)
     }

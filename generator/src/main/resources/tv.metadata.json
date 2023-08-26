@@ -224,8 +224,7 @@
       "Name": "Identifier",
       "Format": "uint32",
       "Constraints": {
-        "StepValue": 1,
-        "MinimumValue": 0
+        "StepValue": 1
       },
       "Properties": [
         "read"
